@@ -18,6 +18,7 @@ const divider = () => {
 
 const sectionHeader = (data) => {
   const section = data.section;
+
   return (
     <View style={styles.sectionHeader}>
       <Text style={styles.sectionHeaderText}>{section.time}</Text>
@@ -44,9 +45,7 @@ const ScheduleScreen = (props) => {
     return (
       // Renders each talk with a navigation to the details screen
       <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Details');
-        }}
+        onPress={() => props.navigation.navigate('Details', { talkData: item })}
       >
         <View style={styles.singleItem}>
           <Text>{item.title}</Text>
