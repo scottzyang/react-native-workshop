@@ -1,18 +1,12 @@
 import React from 'react';
-import { ScrollView, View, Text, StyleSheet, SectionList } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  SectionList,
+  TouchableOpacity,
+} from 'react-native';
 import { mockData } from '../mockData';
-
-// used to render each item for SectionList
-const singleItem = (data) => {
-  // SectionList gives an object, we named data, that has an item key with the array from our mockData data key.
-  const item = data.item;
-
-  return (
-    <View style={styles.singleItem}>
-      <Text>{item.title}</Text>
-    </View>
-  );
-};
 
 // function to extract unique key for item, takes in the data, and assigns the id as the key
 const keyExtractor = (item) => item.id;
@@ -39,7 +33,28 @@ const listHeader = () => {
   );
 };
 
-const ScheduleScreen = () => {
+const ScheduleScreen = (props) => {
+  const navigation = props.navigation;
+
+  // used to render each item for SectionList
+  const singleItem = (data) => {
+    // SectionList gives an object, we named data, that has an item key with the array from our mockData data key.
+    const item = data.item;
+
+    return (
+      // Renders each talk with a navigation to the details screen
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Details');
+        }}
+      >
+        <View style={styles.singleItem}>
+          <Text>{item.title}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <View style={styles.container}>
       <SectionList

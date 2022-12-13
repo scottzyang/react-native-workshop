@@ -11,7 +11,9 @@ import Icon from '../assets/react.png';
 
 const windowWidth = Dimensions.get('window').width;
 
-const HomeScreen = () => {
+const HomeScreen = (props) => {
+  // the Stack.Navigator passes in props/data into the components, one of them being navigation.
+  const navigation = props.navigation;
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={Icon} />
@@ -20,7 +22,12 @@ const HomeScreen = () => {
         The best React Native conference, powered by Shopify
       </Text>
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          navigation.navigate('Schedule');
+        }}
+      >
         <Text style={styles.buttonText}>See Schedule</Text>
       </TouchableOpacity>
     </View>
@@ -30,7 +37,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#D4D4D4',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 24,
