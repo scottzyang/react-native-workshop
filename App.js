@@ -13,8 +13,19 @@ export default function App() {
     <NavigationContainer>
       {/* Stack.Navigator will pass in props/data into the screens below. */}
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Schedule" component={ScheduleScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Schedule"
+          component={ScheduleScreen}
+          options={{
+            headerLeft: () => null,
+            headerShown: false,
+          }}
+        />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
